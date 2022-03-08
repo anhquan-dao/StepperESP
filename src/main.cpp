@@ -57,24 +57,13 @@ bool decreasing = false;
 int8_t cmd = 0;
 
 void loop() {
-	// stepper.setSpeed(500, 4000);
-	// stepper.getEncoderCount();
-
 	int haha = Serial.available();
 	if(haha>0){
 		cmd = Serial.read();
 		if(cmd == 0x4D)
 			cmd = Serial.read();
 			if(cmd == 0x01)
-				setSpeed();
-
-		// case 0:
-		// 	stepper.getEncoderCount();
-		// 	Serial.write((char)((stepper.tick_count[0]>>8)&0xff));
-		// 	Serial.write((char)(stepper.tick_count[0]&0xff));
-		// 	Serial.write((char)((stepper.tick_speed[1]>>8)&0xff));
-		// 	Serial.write((char)(stepper.tick_speed[1]&0xff));
-		
+				setSpeed();		
 	}
 	delay(100);
 }
