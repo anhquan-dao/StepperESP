@@ -36,17 +36,6 @@ void setup() {
   stepper.setEncoderPin(ENCODER_A, ENCODER_B);
 
   stepper.initialize();
-  
-
-//   xTaskCreatePinnedToCore(
-//     motor_control_task,
-//     "motor_control",
-//     10000,
-//     NULL,
-//     2,
-//     &motor_control,
-//     0);
-//   delay(200);
 
   xTaskCreatePinnedToCore(
     encoder_read_task,
@@ -106,15 +95,6 @@ void setSpeed(){
 	// Serial.print(" ");
 	// Serial.print(*speed_2, HEX);
 	// Serial.println();
-}
-void motor_control_task(void* pvParameters) {
-	TickType_t xLastWakeTime= xTaskGetTickCount();
-	const TickType_t xFrequency = 50 / portTICK_PERIOD_MS;
-
-	for(;;){
-		vTaskDelayUntil(&xLastWakeTime, xFrequency);
-		stepper.motorControl();
-	}
 }
 
 void encoder_read_task(void *pvParameters){
